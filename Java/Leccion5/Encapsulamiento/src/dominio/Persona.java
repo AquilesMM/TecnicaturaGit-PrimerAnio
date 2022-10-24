@@ -8,6 +8,10 @@ public class Persona {
     private double sueldo;
     private boolean eliminado;
     
+    //de no poner modificador, el que se le otorgara automaticamente sera default o package, tampoco podra accederse de otro paquete
+    //el no tener no modificador no lo hace publico, lo vuelve defautl o package, esto se hace de manera interna
+    // si nosotros queremos definir default o package no lo aceptara y sera un error
+    
     //String empieza con mayuscula a diferencia de double, boolean por ej, ya que string String no es tipo primitivo cmo el resto
     
     
