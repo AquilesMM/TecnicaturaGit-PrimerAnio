@@ -30,6 +30,26 @@ public class PersonaPrueba {
         
         //Tarea: Crear otro objeto de tpo Persona, asignar valores de manera inicial
         //e imprimir, luego modificar sus valores y volver a imprimir con los valores nuevos
+        
+        
+        
+        
+        //METODO TO STRING
+        
+        /*
+        Este metodo permite ver el estado del objeto en cualquier momento
+        Nos permite ver el valor de cada atributo que agregemos al metodo
+        El objetivo es que al hacer la impresion de una variable que apunta a un objeto, se vea toda la informacion
+        incluyendo cada valor de cada atributo de este objeto
+        
+        Manera de llamarlo
+        System.out.println("persona1: "+persona1.toString());
+        esa es la sintaxis correccta, cuando nos encontramos que el metodo toString no esta definido
+        pero como en este caso si lo definimos en la clase Persona, entonces la sintaxis se simplifica de la siguiente manera:
+        cont soutv+ tab de esta manera el compilador llamara automaticamente al toString
+        */
+        System.out.println("persona1 = " + persona1);
+        
     }
     
 }
