@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23cd9cca-63bd-4e38-b3d4-78fd52a4e4c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Leccion7/ClientePersona.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Leccion7/Persona.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Leccion8/Vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Leccion8/Vehiculo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +35,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Leccion8" />
   </component>
   <component name="RunManager" selected="Python.ClientePersona">
     <configuration name="ClientePersona" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
