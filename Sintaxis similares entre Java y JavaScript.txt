@@ -20,9 +20,9 @@ Operadores de Asignación
 Los operadores simplificados también asignan
 
 Operadores de comparación (Boolean)
-== Revisa el valor sin importar el tipo
-=== Revisa el valor y el tipo también en js
-//Este operador se lo llama de igualdad estricta
+== Revisa el valor sin importar el tipo (con tipo referimos a string, int, etc) puede ser un 3 str y un 3 int y aunque sean de diferente tipo dara que es igual
+=== Revisa el valor y el tipo también en js. si son de diferente tipo dara false, cosa que no pasa en el anterior
+//Este operador se lo llama de igualdad estricta (el operador ===)
 
 Documentar
 // = Para una línea de comentario
@@ -40,8 +40,8 @@ Secuencias de Escape
 
 Operador de Aumento
 ++
-Ejemplo: Let z = ++a; //PreIncremento
-Ejemplo: z = a++; //PosIncremento
+Ejemplo: Let z = ++a; //PreIncremento | a la variable a le suma 1, analiza de iz a der
+Ejemplo: z = a++; //PosIncremento     | z se le pone el valor de a y luego se le suma 1 a la variable a por lo que en su proximo uso valdra +1 (LA VARIABLE A)
 
 Operador de Decremento
 --
@@ -50,7 +50,7 @@ Ejemplo: z = a--; //PosDecremento
 
 Operador Distinto, Diferente(Boolean)
 != Comprueba valores sin revisar el tipo
-!== Comprueba el valor y también el tipo
+!== Comprueba el valor y también el tipo (igual que ===)
 
 Operadores Relacionales (Boolean)
 <
