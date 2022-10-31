@@ -31,6 +31,14 @@ public class PersonaPrueba {
         //Tarea: Crear otro objeto de tpo Persona, asignar valores de manera inicial
         //e imprimir, luego modificar sus valores y volver a imprimir con los valores nuevos
         
+        Persona persona2 = new Persona("Aquiles", 56.000, false);
+        System.out.println("EL nombre de persona2 origial es: "+persona2.getNombre()+
+                "Su sueldo es: "+persona2.getSueldo()+ "Booleano Persona2: "+persona2.isEliminado());
+        persona2.setNombre("Mily");
+        persona2.setSueldo(56.000);
+        persona2.setEliminado(true);
+        System.out.println("EL nombre de persona2 modificado es: "+persona2.getNombre()+
+                "Su sueldo es: "+persona2.getSueldo()+ "Booleano Persona2: "+persona2.isEliminado());
         
         
         
