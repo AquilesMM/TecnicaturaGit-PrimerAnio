@@ -22,6 +22,22 @@ public class Persona {
         Persona.contadorPersona ++; //no utilizar el operador this
         //vamos a asignar un nuevo valor a la variable idPersona 
         
+        //IMPORTANTE
+        
+        //en este caso el atributo estatico crece de valor sin haberlo iniciado anteriormente
+        // ESTO ES ASI YA QUE: el atributo al ser estatico se asocia a la clase, al estar asociado a la clase es que puede generar
+        //el cambio (aumento) sin estar inicializado
+        //un atributo cada vez que nosotros creamos un objeto, el atributo se inicializa nuevamente para asignarle nuevos valores
+        //al objeto, en el caso de un metodo/atributo estatico no es asi, simplemente se realizara la operacion, en este caso
+        //sumar. 
+        
+        
+        /*
+        por lo que entendi, es necesario inicializar los atributos cuando son de tipo dinamico es decir asociado a objetos
+        ya que este se inicializara cada que creemos un objeto nuevamente, en cambio al ser de tipo estatico, una vez este se 
+        inicializa arriba, ya no necesita volver a hacerlo y todos sus cambios se guardaran en la clase, la cual no varia, es estatica
+        */
+        
         this.idPersona = Persona.contadorPersona; //le asignamos un atributo estatico haciendo que de esta manera
         //aunque cada vez que se ejecute id persona empiece en cero, el estatico le mantendra el valor
         //cada que se ejecuta se inicializa de nuevo, asi se llamaria, osea, se reinicia a cero, pero el static le da el valor
