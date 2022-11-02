@@ -52,3 +52,87 @@ let rompiendo = "rompe";
 console.log(_1num);
 console.log(rompiendo);
 
+// USO BASICO var, let y const
+//a dia de hoy ya no es recomendable utilizar var, ahora se usa let para las variables
+//let para variables
+//const para las constantes
+
+//se puede crear una variable solo con el identificador, ESTO ES UNA MALA PRACTICA, pero es posible
+//ej:
+//ejemplo = "Pedro"; //esto nos demuestra que solo con el identificador se puede crear una variable
+//MALA PRACTICA
+//console.log(ejemplo);
+
+//CONST
+const apellido2 = "Funes";
+//no se puede alterar una constante
+//ejemplos de const: DNI, CUIL, Fecha Nacimiento, const numericas como Pi y e
+
+//apellido2 = "Martinez"; //esto da error porque las const no pueden ser reasignadas/modificadas
+console.log(apellido2)
+
+
+//ACLARACIONES var, let, const
+
+/*
+Con var puedes reasignar en calquier momento, ya que este foram parte del ambito global
+Un error es que se sobreescriba
+
+se puede reasignar un nuevo valor, o hasta un nuevo tipo (boolean, int, etc)
+*/
+var nombre = 'Ariel';
+nombre = 'Osvaldo';
+console.log(nombre);
+
+function saludar(){
+    var nombre3 = 'Natalia';
+    console.log(nombre3);
+}
+//console.log(nombre3); //Aqui no lee el dato en la funcion  || funciona bien, no queremos que algo en una funcion no usada cambie nada del resto del codigo
+
+
+if(true){
+    var edad = 34;
+    console.log(edad);
+}
+console.log(edad); //en la  funcion funciono correctamente, en la estructura if fallo || cambio un valor y creo, cuando la estructura no a sido ejectuda
+//al crearse una variable dentro de una estructura, deberia estar bloqueada para que se reflejaran los resultados fuera de esa estructura
+//no deberia darme acceso a esa variable, es decir deberia decir que la variable no a sido definida
+//per esta interpretando que la variable esta definida dentro de la estructura, esto es un fallo
+//ya que la informacion dentro de una estructura no deberia filtrarse fuera por ello se deja de utilizar el var, tiene fallas
+
+
+
+
+/*
+let: esta puede ser reasignada en cualquier momento
+la diferencia es que su ambito es de bloque,
+solo disponible dentro de un bloque de llaves
+o dentro de una fuuncion
+
+
+No deja filtrar informacion como var
+una variable iniciada en una estructura, no se filtrara fuera
+
+si queremos utilizarla fuera deberemos definirla fuera del bloque
+
+*/
+
+function saludar2(){
+    let nombre2 = 'Ariel';
+    console.log(nombre2);
+}
+console.log(nombre2);
+if(true){
+    let edad2 = 33;
+    console.log(edad2);
+}
+//console.log(edad2);
+
+/*
+const se utiliza para valores constantes que no pueden ser reasignados
+*/
+const fechaNacimiento = 2006;
+console.log(fechaNacimiento);
+//fechaNacimiento = 2003;
+//console.log(fechaNacimiento); //solo se ejecuta el console anterior
