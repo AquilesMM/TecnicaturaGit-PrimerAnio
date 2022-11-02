@@ -2,6 +2,10 @@
 package domain;
     //HERENCIA
 
+    //EN MEMORIA 
+    //EN MEMORIA LA CLASE PADRE E HIJA SON UN SOLO OBJETO
+    //tenemos info de ambas clases porque hija hereda de padre
+
     //EN JAVA SOLO HAY HERENCIA SIMPLE, NO SE PUEDE INDICAR QUE ES HIJA DE MAS CLASES, SOLO DE UNA
     //esto no se puede ya que en java las gerarquias son de herencia simple y porque utilizar herencias multiples
     //podria conllevar problemas de diseño
@@ -22,7 +26,7 @@ public class Empleado extends Persona {
     private static int contadorEmpleados; //es para incrementar, relacionado a idEmpleado
     
     //constructor
-    //solo crearemos constructor para sueldo
+    //solo crearemos constructor para sueldo y nombre
     public Empleado(String nombre, double sueldo) { //pedimos el atributo nombre de la clase padre Persona
         //para trabajar con atributos heredados de la clase padre, deberemos trabajar con el constructor:
         //SUPER
@@ -55,6 +59,10 @@ public class Empleado extends Persona {
         StringBuilder sb = new StringBuilder(); //crea objeto de StringBuilder con constructor vacio
         sb.append("Empleado{idEmpleado=").append(idEmpleado); //atravez del objeto utiliza el metodo append
         sb.append(", sueldo=").append(sueldo);
+        sb.append(", ").append(super.toString()); //mediante el constructor super, accedemos  al toString de la clase padre
+        //aunque bien podria ser a cualquier metodo o atributo de la clase padre, exceptuando atributos privados
+        //en cambio a aquellos privados, podremos acceder a travez de metodos get o set
+        //podemos acceder a atributos heredados a travez de this.
         sb.append('}');
         return sb.toString();
         //Este metodo es mas eficiente que la concatenacion con suma porque:

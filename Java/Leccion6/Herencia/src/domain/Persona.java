@@ -75,8 +75,19 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", direccion=" + direccion + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Persona{nombre=").append(nombre);
+        sb.append(", genero=").append(genero);
+        sb.append(", edad=").append(edad);
+        sb.append(", direccion=").append(direccion);
+        sb.append(", ").append(super.toString()); //de esta manera es que mostramos el espacio de memoria en el metodo toString 
+        //modificado llamamos a la clase padre y sobreescribimos su metodo to string para que nos
+        //muestre el espacio de memoria en el que esta trabajando el objeto creado hacia la clase persona, ese espacio de memoria
+        //va a ser unico para la clase padre y para la clase hija, estan unidas, estan entrelazadas
+        sb.append('}');
+        return sb.toString();
     }
+
     
     
     

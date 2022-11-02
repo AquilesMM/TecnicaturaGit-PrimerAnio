@@ -34,7 +34,7 @@ vip:boolean
 +getIdCliente():Int
 +getFechaRegistro():Date
 +setFechaRegistro(Date):void
-+idVip():boolean
++iVip():boolean
 +setVip(boolean):void
 
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>310</y><w>260</w><h>50</h></coordinates><panel_attributes>lt=()-
