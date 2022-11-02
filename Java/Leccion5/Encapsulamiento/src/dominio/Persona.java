@@ -78,4 +78,15 @@ public class Persona {
     
     
     
+    //TO STRING
+    
+    public String toString(){ //convierte en una cadena cada atributo
+        //Para poder ver todos los datos que va a mostrar esta debe ser publica, y debe ser string
+        return "Persona [nombre: "+this.nombre+
+                ", sueldo: "+this.sueldo+
+                ", eliminado: "+this.eliminado+" ]";
+        
+        //de esta manera accedemos a todos los atribtos de la clase, convirtiendolos en String
+        //para mostrarlos del objeto que queramos
+    }
 }
