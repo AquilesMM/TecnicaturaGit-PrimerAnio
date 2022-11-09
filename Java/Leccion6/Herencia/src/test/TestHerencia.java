@@ -3,6 +3,7 @@ package test;
 
 import domain.Empleado;
 import domain.Cliente;
+import domain.Persona;
 import java.util.Date;
 
 
@@ -52,5 +53,12 @@ public class TestHerencia {
         el cambio no se este mostrando, actualizar clases
         */
         
+        
+        //Sobrecarga de constructores
+        
+        
+        Persona persona1 = new Persona(); //cuando creamos un objet de una clase que tiene mas de un constructor, al precionar ctrl + esp podremos
+        //Ver que constructores estan dispoibles y cual queremos usar, de todas formas al poner los datos en el orden del constructor tambien se llamara
+        //aquel que cumple con las condiciones para construir el objeto
     }
 }
