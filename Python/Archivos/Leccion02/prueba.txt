@@ -1,0 +1,12 @@
+Programamos con diferentes tipos de archivos, ahora en txt.
+Los acentos sin importantes para las palabras
+como por ejemplo: acción y producción
+letras: r/read,
+ a/apend,
+ w/write,
+ x/crea un archivo
+ t/texto o text sirve para especificar el tipo de archivo, 
+ b/ binary para archivos binarios, imagenes,videos, pdf, etc 
+ w+/ esto es un modo combinado para leer y escribir 
+ r+/ leer y escribir, como w+ pero al revez
+ Saludos a todos los alumnos de la tecnicaturaCon esto terminamos.
