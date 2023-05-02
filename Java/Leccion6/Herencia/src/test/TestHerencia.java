@@ -2,12 +2,15 @@
 package test;
 
 import domain.Empleado;
+import domain.Cliente;
+import domain.Persona;
+import java.util.Date;
 
 
 public class TestHerencia {
     public static void main(String[] args) {
         //haremos un objeto de la clase Empleado, importando la clase
-        Empleado empleado1 = new Empleado();
+        Empleado empleado1 = new Empleado("Aquiles", 57000.0);
         System.out.println("empleado1 = " + empleado1);
         /*
         A pesar de no haber creado nada en la clase Empleado, aun asi al hacer un objeto con dicha clase, esta 
@@ -22,6 +25,40 @@ public class TestHerencia {
         al no tener nada la clase empleado, al llamar al objeto, va primero a empleado, y al no haber nada pasa a la clase
         Persona
         y luego de usar el constructor vacio, al no tener nada, acude al toString
+        
         */
+        
+        Date fecha1 = new Date();
+        
+        //Cliente cliente1 = new Cliente("Mily",'f', 20, "tupac Amaru", new Date(), true); //esto para ver que podemos crear
+       // un objeto dentro de otro, en este caso objeto date
+        Cliente cliente1 = new Cliente("Mily",'f', 20, "tupac Amaru", fecha1, true);
+        System.out.println("cliente1 = " + cliente1);
+        
+        //SECRETOS DE EJECUCION
+        
+        /*
+        A la hora de modificar una serie de clases padre e hijas, si nosotros realizamos cambios en uno de ellos
+        pongase el padre, los cambios no se veran reflejado en las hijas ni quienes importen a las clases hijas o clase padre
+        hasta que no los actualicemos, y en caso de ser una serie de herencia importacion deberemos actualizar todo
+        
+        ejemplo, hacemos cambio en persona, para que el cambio se vea en testHerencia, primero deberemos actualizar
+        las clases hijas de persona Empleado/Cliente, (dependiendo de que objeto usemos) y luego la clase test Herencia
+        (el orden no importa, pero si deben ser actualizados todos) para que asi se vea el cambio
+        cabe destacar que debemos guardar los cambios que hayamos echo
+        
+        Para actualizar, basta con borrar y volver a poner un punto y coma y guardar el archivo
+        
+        puede o no pasar que se necesiten las actualizaciones, hay veces que se actualizan solas. pero en caso de que 
+        el cambio no se este mostrando, actualizar clases
+        */
+        
+        
+        //Sobrecarga de constructores
+        
+        
+        Persona persona1 = new Persona(); //cuando creamos un objet de una clase que tiene mas de un constructor, al precionar ctrl + esp podremos
+        //Ver que constructores estan dispoibles y cual queremos usar, de todas formas al poner los datos en el orden del constructor tambien se llamara
+        //aquel que cumple con las condiciones para construir el objeto
     }
 }

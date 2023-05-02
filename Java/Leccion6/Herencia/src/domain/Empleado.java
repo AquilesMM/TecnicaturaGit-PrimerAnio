@@ -2,6 +2,10 @@
 package domain;
     //HERENCIA
 
+    //EN MEMORIA 
+    //EN MEMORIA LA CLASE PADRE E HIJA SON UN SOLO OBJETO
+    //tenemos info de ambas clases porque hija hereda de padre
+
     //EN JAVA SOLO HAY HERENCIA SIMPLE, NO SE PUEDE INDICAR QUE ES HIJA DE MAS CLASES, SOLO DE UNA
     //esto no se puede ya que en java las gerarquias son de herencia simple y porque utilizar herencias multiples
     //podria conllevar problemas de diseño
@@ -21,21 +25,52 @@ public class Empleado extends Persona {
     private double sueldo;
     private static int contadorEmpleados; //es para incrementar, relacionado a idEmpleado
     
-    //constructor
-    //solo crearemos constructor para sueldo
+    
+    
+    //sobrecarga de constructores, podemos crear tantos constructores como combinaciones de atributos tengamos
+    //no podemos usar constructores para tipos de atributos que no hayamos definido, ni construir constructores que ya tengamos echos
+    //siempre deben ser utiles
+     public Empleado(){
+        this.idEmpleado = ++Empleado.contadorEmpleados;
+        
+    }
+
     public Empleado(String nombre, double sueldo) { //pedimos el atributo nombre de la clase padre Persona
         //para trabajar con atributos heredados de la clase padre, deberemos trabajar con el constructor:
         //SUPER
-        super(nombre); //recibira el nombre
+        //super(nombre); //recibira el nombre
+        //con super podemos acceder a tributos de clase padre aunque no sean protected, no es necesario en los atributos protected
+        /*
+        Si bien el constructor de la clase padre(super) siempre se coloca al pricipio, hay una excepcion a esta rregla y es
+        cuando llamamos a un constructor interno, es decir, llamar a otro constructor de la misma clase desde un constructor
+        
+        IMPORTANTE, CUANDO LLAMAMOS A UN CONSTRUCTO INTERNO ------NO PODEMOS USAR SUPER------ ES UNO U OTRO
+        
+        llamaremos a constructor vacio, para que use idEmpleado
+        */
+        
+        this();  //estamos llamando al constructor vacio (llamar a un constructor interno
+        
+        /* 
+        al llamar al constructo interno, y no a super, no inicializamos el atributo nombre, entonces lo que hacemos es
+        que al ser los atributos desde la clase padre de tipo protected, podemos acceder a estos atributos directamente sin problema
+        */
+        
+        this.nombre = nombre; //accedemos al atributo de la clase padre (tipo protected) sin super
+        
+        
+        
+        
         //agregamos aumento para idEmpleado
-        this.idEmpleado = ++Empleado.contadorEmpleados; //para que se entienda bien lo que sucede, lo haremos utilizando la clase
+        //this.idEmpleado = ++Empleado.contadorEmpleados; //para que se entienda bien lo que sucede, lo haremos utilizando la clase
         //para llamar al contadorEmpleados, si bien no es necesario, es buena practica y ayuda que se entienda mejor el codigo
         //diciendole que utilizamos el atributo que llega desde la clase Empleado
         //es la manera visible que debe de tener cuando se trabaja dentro del contexto estatico
         //es decir ponemos el atributo asociado a la clase
         this.sueldo = sueldo;
     }
-
+    
+   
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -55,6 +90,10 @@ public class Empleado extends Persona {
         StringBuilder sb = new StringBuilder(); //crea objeto de StringBuilder con constructor vacio
         sb.append("Empleado{idEmpleado=").append(idEmpleado); //atravez del objeto utiliza el metodo append
         sb.append(", sueldo=").append(sueldo);
+        sb.append(", ").append(super.toString()); //mediante el constructor super, accedemos  al toString de la clase padre
+        //aunque bien podria ser a cualquier metodo o atributo de la clase padre, exceptuando atributos privados
+        //en cambio a aquellos privados, podremos acceder a travez de metodos get o set
+        //podemos acceder a atributos heredados a travez de this.
         sb.append('}');
         return sb.toString();
         //Este metodo es mas eficiente que la concatenacion con suma porque:
