@@ -1,0 +1,10 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>306</x><y>81</y><w>198</w><h>81</h></coordinates><panel_attributes>&lt;&lt;Empleado&gt;&gt;
+--
++nombre
++usuario
+--
+__str__()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>306</x><y>297</y><w>198</w><h>72</h></coordinates><panel_attributes>&lt;&lt;Gerente&gt;&gt;
+--
++Departamento
+--
+__str__()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>396</x><y>153</y><w>27</w><h>162</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;160</additional_attributes></element></diagram>
