@@ -12,6 +12,11 @@ public class TestAbstractas {
         //pueden almacenar referencias de clases hijas gracias al polimorfismo
         //utilizamos polimorfismo para que la variable sea mas generia, es importante intentar que el codigo siempre sea lo mas generico posible 
         
+        //estamos utilizando de manera automatica un upcastin, asignando una referencia de tipo hija a una de tipo padre, no hace 
+        //falta utilizar conversion en upcasting 
+        
+        //tomara como prioridad el metodo de menor gerarquia, en este caso el de la clase rectangulo
+        
         //algunas veces es util marcar clases como abstractas aunque no se tengan metodos abstractos con el fin de no poder crear objetos
         //de la clase padre, pero si de las clases hijas
         //por lo que no todas las clases abstractas tendran metodos abstractos, a veces solo se marcan asi para evitar que se puedan crear objetos
