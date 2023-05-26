@@ -5,6 +5,13 @@
 //SINTAXIS BASICA PARA DEFINIR UNA CLASE
 //se recomienda que el nombre inicie con mayuscula
 class Persona {
+    //Si bien la clase padre no extiende de nada, la clase de la que extienden todas las clases por defecto
+    //es la clase Object, al igual que pasa en java
+
+
+
+
+
     //creamos un constructor
     //este constructor es muy similar al constructor utilizado para crear un objeto
     //su sintaxis tambien es muy similar a la sintaxis de un metodo
@@ -49,7 +56,48 @@ class Persona {
     set apellido(apellido){
         this._apellido = apellido;
     }
+
+
+    //cabe destacar que no es necesario agregar ninguna coma entre metodo y metodo
+    //tampoco utilizamos la palabra reservada function para crear los metodos
+    //solo con el nombre js entiende que es una funcion o un metodo dentro de la clase
+
+
+    //Metodo para heredar a la clase hija
+    nombreCompleto(){
+        return this._nombre+ ' '+ this._apellido;
+        //Podemos observar que aunque el metodo este creado en la clase padre, este podra ser accesible
+        //desde la clase hija
+    }
+
+
+   //METODO TO STRING
+   /*
+   Este metodo nos permite imprimir informacion del estado del objeto es decir todos los valores y estados actuales de los atributos de nuestro objeto 
+   es buena practica agregar este metodo en la definicion de nuestra clase
+
+   Sin embargo cuando trabajamos en la clase object, tenemos que tener en cuenta que hay metodos que ya estan definidos en la clase objetc, o metodos que ya 
+   estan definidos en el atributo de prototype
+
+   podemos ver que uno de estos atributos definidos en object.prototype es toString
+   
+   Object.prototype.toString
+
+   A continuacion sobreescribimos el metodo toString
+    */
+
+    toString(){ //regresa un String
+        return this.nombreCompleto
+    }
+
+
+
 }
+
+
+
+
+
 
 //CREACION DE UNA NUEVA CLASE QUE EXTIENDE DE PERSONA
 
@@ -72,6 +120,34 @@ class Empleado extends Persona{ //Clase Hija
     set departamento(departamento){
         this._departameto = departamento;
     }
+
+    //SOBREESCRITURA
+
+   /*
+   Hasta este punto el metodo nombre completo de la clase padre, no esta completo desde el punto de vista de la clase hija
+   le falta el atributo de departamento, ya que el metodo solo trae el nombre y apellido, no el departament que es el 
+   atributo con el que trabaja la clase hija.
+
+   Para cambiar esto, utilizaremos el concepto de sobreescritura desde la clase hija, permitiendonos cambiar el comportamiento de el metodo en la clase hija 
+
+
+   IMPORTANTE:
+   Para que se considere sobreescritura, el metodo debe manetener el mismo nombre que tiene en su clase padre, si lo modificamos, por minimo que sea
+   este se considerara un metodo distinto, y no sera sobreescritura, si se tiene parametros tambien deben estar incluidos los mismos parametros
+    */
+
+   nombreCompleto(){
+    //return this._nombre+' '+this._apellido+' '+this._departameto;
+    //el codigo de arriba es muy redundante ya que tenemos gran parte de esto echo en el metodo de la clase padre, por lo que no es necesario
+    //por ello resumimos con el siguiente codigo 
+    return super.nombreCompleto()+' '+this._departameto
+    //no olvidar los parentesis en el metodo para que sea considerado un metodo
+   }
+
+
+    
+
+
 }
 
 
@@ -131,6 +207,60 @@ let empleado1 = new Empleado('Maria', 'Gimenez', 'Sistemas');
 // por lo que al crear objetos de una clase hija,es importante en el constructor de estos objetos, llamar a super 
 
 console.log(empleado1);
-console.log(empleado1.nombre)
+console.log(empleado1.nombre);
 //en este caso vemos como se heredan los metodos de la clase padre, ya que get nombre no esta en la clase hija
 //pero si en la clase padre, y por ello podemos utilizarlo en un objeto de su clase hija
+
+
+
+//ACCEDEREMOS A METODOS DE CLASE PADRE A TRAVEZ DE OBJETO DE CLASE HIJA QUE HEREDA CLASE PADRE
+console.log(empleado1.nombreCompleto()); //Es necesario poner los parentesis para indicar que es un metodo
+
+
+
+//Object.prototype.toString   //esta es la manera de acceder a atributos y metodos de manera dinamica 
+
+//EL METODO PROTOTYPE NOS PERMITE AGREGAR OTROS METODOS A NUESTRA CLASE 
+ /*
+ En JavaScript, cada objeto tiene una propiedad llamada "prototype" (prototipo), que es una referencia a otro objeto.
+  El prototipo es utilizado por el motor de JavaScript para buscar propiedades y métodos en caso de que no estén presentes en el objeto actual.
+
+ La propiedad Object.prototype es un objeto especial en JavaScript que actúa como el prototipo de todos los objetos creados a través
+ del constructor Object. En otras palabras, todos los objetos en JavaScript heredan propiedades y métodos de Object.prototype.
+
+ La función toString es un método definido en Object.prototype. Cuando invocas Object.prototype.toString en un objeto,
+ se devuelve una representación en forma de cadena de ese objeto. La cadena devuelta indica el tipo de objeto.
+ */
+
+
+console.log(empleado1.toString()); //accedemos desde la clase hija por herencia
+
+/*
+En este caso tambien se estara poniendo en practica el polimorfismo, ya que al ejecutar to String, no solo se llamara a nombre y apellido
+sino que tambien se llamara al departamento, es decir, como en el metodo toString, retornamos el metodo nombreCompleto() este detecta que el mas
+adecuado en este caso sera el metodo de la clase hija, es decir, la clase padre mediante polimorfismo puede acceder a los metodos de la clase hija
+
+El metodo que se utilice dependera de la referencia con la que estemos trabajando, es decir, si lo que se utiliza es una referencia de clase hija, 
+se llamara al metodod e la clase hija puesto que es el mas adecuado, pero si utilizamos un metodo de la clase padre, se mandara a llamar al metodo de la
+clase padre, puesto que es el mas adecuado por el contexto
+
+Polimorfismo: multiples formas en tiempo de ejecucion
+
+
+El recorrido se puede describir de la siguiente manera:
+
+hacemos el llamado desde objeto de clase hija, este busca el metodo en la clase hija y no lo encuentra
+pero lo encuntra heredado de la clase padre, por lo que va a la clase padre, y utiliza el metodo, este llama
+al metodo nombreCompleto() pero este metodo lo llama desde la clase padre pero no utiliza el de la clase padre, 
+sino que va a la clase hija y utiliza el metodo sobreescrito, puesto que a sido llamado desde el objeto de la clase hija
+el metodo de la clase hija, por como esta echo, llama al metodo de la clase padre, y le añade el departamento 
+
+
+*/
+
+console.log(persona1.toString());
+
+/*
+En este caso el recorrido va directamente a la clase, padre y al ser un objeto de clase padre, utilizara el metodo definido en esta clase 
+*/
+
