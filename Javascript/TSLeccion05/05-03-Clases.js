@@ -10,7 +10,35 @@ class Persona {
 
 
 
+    //DEFINIMOS ATRIBUTO STATIC
+    //este atributo pertenecera a la clase y no a los objetos en si, al igual que pasa con las clases static
 
+    //static contadorObjetosPersona = 0; //atributo estatico
+    static contadorPersonas = 0;
+
+    //CREAMOS ATRIBUTOS NO ESTATICOS
+    //estos son atributos que van directamente a la clase sin ser necesariamente utilizados en el constructor
+
+    //email = 'Valor default email'; //atributo no estatico
+
+
+    //CREAR UN CONSTANTE ESTATICA
+    //es decir, crear una variable de tipo estatica pero que no pueda ser modificada
+    //para ello no podemos utilizar la palabra reservada const, que seria una constante, para declarar variables
+    //pero si queremos declarar una variable estatica que no sea modificable, se puede hacer lo siguiente:
+    /*
+    Creamos un metodo estatico que solo nos permitira leer el valor que va a regresar este metodo
+    pero no vamos a poder modificar esta variable ya que no es una variable realmente, solo es la llamada a un metodo estatico
+    parecera una constante de tipo estatico
+    es decir simulamos una constante
+
+    La idea de la "constante" que crearemos sera determinar el maximo de objetos que podemos crear, para limitar la creacion de objetos
+    */
+    
+    static get MAX_OBJ(){ //en mayusculas porque asi se identifican las constantes
+        return 5;
+        //de esta forma no se podra modificar, sera estatico y siempre regresara el mismo valor
+    }
 
     //creamos un constructor
     //este constructor es muy similar al constructor utilizado para crear un objeto
@@ -20,12 +48,33 @@ class Persona {
         this._nombre = nombre; //usamos el gion bajo para trabajar con get
         this._apellido = apellido;
 
-        
+        if(Persona.contadorPersonas < Persona.MAX_OBJ){ //Limitamos la cantidad de objetos maximos que se pueden construir
+            this.idPersona= ++Persona.contadorPersonas;
+        }else{
+            console.log('Se ha superado el maximo de objetos permitidos')
+        }
+
+
+
+
+
+
         //CASO NO DEFINIR CONSTRUCTOR
         /*
         En el caso de que no definamos un constructor en nuestra clase
         js agregara uno vacio de manera automatica
         */
+
+        //TRABAJAR CON ATRIBUTOS STATIC
+        //es muy importante tener en cuenta que al trabajar con un atributo static, al llamarlo no se debe utilizar el operador this.
+        //ya que this apunta a la referencia de un objeto
+        //se debe apuntar a traves de la clase en si, como se ve a continuacion
+        //Persona.contadorObjetosPersona++;
+        //console.log('Se incrementa el contador, el nuevo valor es: '+Persona.contadorObjetosPersona);
+
+
+        
+
     }
     //METODOS GET Y SET
     //se colocan como suele ser lo general luego del constructor y metodos
@@ -65,7 +114,7 @@ class Persona {
 
     //Metodo para heredar a la clase hija
     nombreCompleto(){
-        return this._nombre+ ' '+ this._apellido;
+        return this.idPersona+' '+this._nombre+ ' '+ this._apellido;
         //Podemos observar que aunque el metodo este creado en la clase padre, este podra ser accesible
         //desde la clase hija
     }
@@ -87,10 +136,29 @@ class Persona {
     */
 
     toString(){ //regresa un String
-        return this.nombreCompleto
+        return this.nombreCompleto();
     }
 
 
+    //Static
+    /*
+    Una vez que ya hemos definido una clase podemos agregar no solamente metodos que se asocien a nuestros objetos. tambien  podemos agregar metodos
+    que se asocien esclusivamente con nuestra clase. Para ello utilizamos la palabra reservada "static"
+    */
+
+    static saludar(){
+        console.log('Saludos desde este método static');
+    }
+
+    //UN METODO STATIC PUEDE PASAR COMO ARGUMENTO UN OBJETO
+    //para demostrarlo crearemos otro metodo static
+    //de llamar desde una clase hija  y de tener que mostrear otrov alor en la previsualizacion de quocka
+    //quocka lo mostrara separado de una coma a cada valor, siendo el primero en mostrarse el primero en llamarase, en orden
+    //descendente
+
+    static saludar2(persona){
+        console.log(persona.nombre+' '+persona.apellido);
+    }
 
 }
 
@@ -109,12 +177,12 @@ class Empleado extends Persona{ //Clase Hija
         //por lo que la unica forma que hay es llamar a su constructor para pasar los valores de nombre y apellido al constructor de la clase padre
         //para ello lo hacemos con super, la primer linea de la clase hija es el constructor de la clase padre, y a este le pasamos los valores requeridos
         //por lo sera necesario tomar en cuenta los atributos del constructor padre para agregarlos a los parametros, para luego pasarlos como argumetos
-        super(nombre, apellido)
+        super(nombre, apellido);
         this._departameto = departamento;
     }
 
     get departamento(){
-        return this._departameto
+        return this._departameto;
     }
 
     set departamento(departamento){
@@ -140,12 +208,9 @@ class Empleado extends Persona{ //Clase Hija
     //return this._nombre+' '+this._apellido+' '+this._departameto;
     //el codigo de arriba es muy redundante ya que tenemos gran parte de esto echo en el metodo de la clase padre, por lo que no es necesario
     //por ello resumimos con el siguiente codigo 
-    return super.nombreCompleto()+' '+this._departameto
+    return super.nombreCompleto()+' '+this._departameto;
     //no olvidar los parentesis en el metodo para que sea considerado un metodo
    }
-
-
-    
 
 
 }
@@ -264,3 +329,97 @@ console.log(persona1.toString());
 En este caso el recorrido va directamente a la clase, padre y al ser un objeto de clase padre, utilizara el metodo definido en esta clase 
 */
 
+
+//LLAMAREMOS AL METODO STATIC
+//Algo que podemos observar es que aunque hemos creado un objeto de la clase persona y lo hemos asignado a la variable persona1
+// esta variable no podra ejecutar los metodos estaticos, nos mandara un mensaje diciendo que esto no es una funcion
+//por ello un metodo estatico se asocia a una clase y no a un objeto.
+//Por lo que si bien este metodo esta dentro de la clase, este no puede ser utilizado desde un objeto, sino que debe 
+//ser utilizado desde la calse misma 
+//persona1.saludar(); //no se utiliza desde el objeto
+
+//se puede utilizar desde la clase
+Persona.saludar(); //esta vez al utilizar el metodo de punto, nos sale la clase saludar, cosa que no pasaba antes a no ser que lo
+//forzaramos
+
+//UN METODO STATIC PUEDE PASAR COMO ARGUMENTO UN OBJETO
+//le enviamos como argumento al objeto de persona1 y en el metodo static utilizamos la funcion de nombre de este objeto
+//en este caso, quocka a diferencia de otros metodos no estaticos, no nos mostrara la salida de informacion desde la linea
+//donde se esta llamando al metodo estatico, que seria la linea Persona.saludar(persona);
+//sino que la salida de informacion se vera, en el mismo metodo static, es decir habra que verlo desde la clase, donde esta
+//instanciado y ahi en el metodo se vera la salida de informacion
+//es decir los resultados se veran en consola pero no en la visualizacion previa como se ve normalmente ya que el metodo static
+//funciona diferente, en este caso solo se pued ever a travez de la clase y no a travez de los objetos
+
+Persona.saludar2(persona1);
+
+
+//llamar a metodo static desde clase hija
+//en este caso podremos hacerlo, se vera en consola y en el metodo de la clase padre tambien se vera la previsualizacion
+//con esto podemos ver que podemos utilizar metodos statics desde clases hijas e incluso con objetos de clases hijas
+//Es decir hay herencia de clases static a las clases hijas,y aunque no se sobreescriban pueden se utilizadas por clases hijas
+//utilizando las clases de los padres
+
+Empleado.saludar();
+Empleado.saludar2(empleado1);
+
+
+
+//INTENTO DE USO DE ATRIBUTO STATIC
+console.log(persona1.contadorObjetosPersona);
+//Al intentar utilizar de esta forma el atributo, nos arrojara por consola que el atributo
+//es undefined
+//a travez de este ejemplo podemos ver que si utilizamos la referencia de un objeto y luego el nombre de una variable
+//si esta variable no se encuentra definida en el objeto, entonces nos dara como salida el valor undefined
+//En este caso la variable contadorObjetosPersona si existe pero no la podemos/debemos acceder con la referencia de un objeto
+//la variable que heos creado es de tipo static, la tenemos que acceder por medio de la clase, al igual que con los metodos static
+//en este sentido, tanto los metodos como los atributos static se trabajan de igual manera
+
+//ACCEDEMOS A ATRIBUTO STATIC MEDIANTE CLASE
+console.log(Persona.contadorObjetosPersona);
+//en este caso dara como salida el valor real del atributo, ya que se puede acceder correctamente al atributo
+
+//ACCEDEMOS DESDE LA CLASSE HIJA
+console.log(Empleado.contadorObjetosPersona);
+//Como vemos las clases hijas tambien tienen acceso a este atributo, por lo que se entiende que las clases hijas heredan atributos static
+
+
+//ATRIBUTOS NO ESTATICOS
+/*
+Estos son atributos que se asocian con los objetos, a estos atributos solo podremos acceder mediante un objeto instanciado en la misma clase perteneciente
+al atributo, como vemos a continuacion
+*/
+console.log(persona1.email);//accedemos perfectamente al atributo no estatico y muestra su valor
+
+//VEMOS SI SE PUEDE ACCEDER POR HERENCIA
+console.log(Empleado.email); //si, se puede sin problemas, por lo que estos atributos se heredan
+
+//INTENTAMOS ACCEDER DESDE LA CLASE
+console.log(Persona.email); //No se puede, da valor undefined
+
+
+
+//Otras sintaxis
+
+console.log(persona1.toString());
+console.log(persona2.toString());
+console.log(empleado1.toString());
+console.log(Persona.contadorPersonas);
+
+
+//Creamos mas objetos
+
+let persona3 = new Persona('Carla', 'Pertosi');
+console.log(persona3.toString());
+console.log(Persona.contadorPersonas);
+
+console.log(Persona.MAX_OBJ);
+//Persona.MAX_OBJ = 10; //no sirve de nada, no se puede modificar ya que es un metodo, no una variable, y solo tiene un return
+
+
+//Creamos otro objeto
+
+let persona4 = new Persona('Franco', 'Diaz');
+console.log(persona4.toString());
+let persona5 = new Persona('Liliana', 'Paz');
+console.log(persona5.toString()); //no habra definido un id ya que sueramos el maximo (se puede mejorar para evitar poner nombre y apellido)
