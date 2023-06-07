@@ -18,9 +18,9 @@ try:
             #IMPORTANTICIMO FILTRAR CON WHERE O SE BORRARAN TODOS LOS REGISTROS
 
             entrada = input('Digite los numeros de registros a eliminar (separados por coma): ')
-            valores = (tuple(entrada.split(',')), ) #tupla de tuplas
+            valores = (tuple(entrada.split(',')),) #tupla de tuplas
 
-            cursor.executemany(sentencia, valores)
+            cursor.execute(sentencia, valores)
 
             registros_eliminados = cursor.rowcount
 
