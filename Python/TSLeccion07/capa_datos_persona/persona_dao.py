@@ -3,7 +3,22 @@ from Persona import Persona
 from conexion import Conexion
 from logger_base import log
 
+"""
+Pool de conecciones
+Psycopg2 tambien incluye un manejo de pool de conexiones
+un pool de conexiones va a ser un objeto que va a administrar a su vez los objetos de conexion hacia la base de datos, podemos tener uno o mas pool de conexiones y cada pool de conexion va a administrar un numero determinado de objetos de conexion hacia la base de datos.
+De esta manera ya no tendremos que obtener de manera independiente los objetos de conexion ya que este proceso es bastante pesado para una aplicacion
+y lo mas recomendable es tener en todo momento disponibles objetos de conexion hacia la base de datos.
 
+Una vez que cierto cliente, necesite de un objeto de conexion hacia la base de datos, lo va a obtener del pool, y una vez que a terminado de su proceso,
+lo libera y regresa al pool de conexiones, para que otro cliente pueda seguir utilizando los objetos disponibles en el pool de conexiones
+
+ACLARACION
+Dos clientes no pueden utilizar al mismo tiempo el mismo  objeto del pool de conexiones, es decir, usaran dos objetos distintos aunque sean del mismo pool
+de conexiones. Utilizaran mismo pool pero diferentes objetos, podran utilzar el objeto del otro siempre y cuendo el otro lo haya dejado de utilizar
+
+ES UN PROCESO BASTANTE RAPIDO
+"""
 class PersonaDAO:
     """
     DAO significa: Data Acccess Object
