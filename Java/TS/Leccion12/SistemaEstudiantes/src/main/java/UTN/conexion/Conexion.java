@@ -12,10 +12,10 @@ public class Conexion {
         Connection conexion = null; //inicializamos l variable de conecxion de tipo conection en null
         //variable para conectarnos a la base de datos
 
-        var baseDatos = "estudiantes2022";
+        var baseDatos = "estudiantes";
         var url = "jdbc:mysql://localhost:3306/"+baseDatos; //es esa url
-        var usuario = "rood"; //usuario por defecto
-        var password = "admin";
+        var usuario = "root"; //usuario por defecto
+        var password = "2005";
 
         //cargamos la clase del driver de mysql en memoria
         //se hace de la siguiente forma
