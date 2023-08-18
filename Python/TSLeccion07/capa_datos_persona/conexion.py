@@ -93,7 +93,7 @@ class Conexion:
                                                       database=cls._DATABASE)
                 log.debug(f'creacion del pool exitosa: {cls._pool}')
                 return cls._pool
-            except:
+            except Exception as e:
                 log.error(f'Ocurrio un error al obtener el pool: {e}')
                 sys.exit()
         else:
@@ -121,8 +121,10 @@ class Conexion:
         log.debug(f'Regresamos la conexion del pool: {conexion}')#indicamos que objeto de conexion estamos regresando
 
         
-
-
+    #Metodo para cerrar por completo todo el objeto de pool de conexiones
+    @classmethod
+    def cerrarConexiones(cls):
+        cls.obtenerPool().closeall()
 
 
 
@@ -130,11 +132,22 @@ class Conexion:
 if __name__ == '__main__':
     #Prueba de objeto de pool de conexiones
     conexion1 = Conexion.obtenerConexion()
+    Conexion.liberarConexion(conexion1)
     conexion2 = Conexion.obtenerConexion() #Con el segundo objeto vemos si obtenemos correctamente varios objetos de conexion
+    Conexion.liberarConexion(conexion2)
     conexion3 = Conexion.obtenerConexion()
+    Conexion.liberarConexion(conexion3)
     conexion4 = Conexion.obtenerConexion()
     conexion5 = Conexion.obtenerConexion()
-    #conexion6 = Conexion.obtenerConexion() # da error puesto que pusimos como maximo 6 objetos de pool de conexion
+    conexion6 = Conexion.obtenerConexion() #podemos creaer una 6ta conexion ya que liberamos conexiones previamente
+    #siempre se intentara usar la direccion de memoria referida a las primeras conexiones, es decir, si habilitamos la primera
+    #y creamos otra, usara la direccion de memoria de la conexion habilitada, y si esta se libera se seguira utilizando
+    #la misma y asi, solo se habilitara otra cuando este ocupada la conexion anterior y no se haya desocupado
+
+    #conexion6 = Conexion.obtenerConexion() # da error puesto que pusimos como maximo 6 objetos de pool de conexion || conexion creada antes de liberar conexiones
+
+
+
 
 
 
