@@ -1,8 +1,8 @@
-package SistemaEstudiantes.src.main.java.UTN.presentacion;
+package UTN.presentacion;
 
-import SistemaEstudiantes.src.main.java.UTN.conexion.Conexion;
-import SistemaEstudiantes.src.main.java.UTN.datos.EstudianteDAO;
-import SistemaEstudiantes.src.main.java.UTN.dominio.Estudiante;
+import UTN.conexion.Conexion;
+import UTN.datos.EstudianteDAO;
+import UTN.dominio.Estudiante;
 
 import java.util.Scanner;
 

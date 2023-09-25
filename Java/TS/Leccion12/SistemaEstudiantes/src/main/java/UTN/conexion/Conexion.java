@@ -1,4 +1,4 @@
-package SistemaEstudiantes.src.main.java.UTN.conexion;
+package UTN.conexion;
 
 
 import java.sql.Connection;
@@ -13,7 +13,7 @@ public class Conexion {
         //variable para conectarnos a la base de datos
 
         var baseDatos = "estudiantes";
-        var url = "jdbc:mysql://localhost:3306/" + baseDatos; //es esa url
+        var url = "jdbc:mysql://localhost:3306/"+baseDatos; //es esa url
         var usuario = "root"; //usuario por defecto
         var password = "2005";
 
@@ -22,9 +22,9 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, usuario, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Ocurrio un error en la conexion " + e.getMessage());
-        }//fin catch
+        } catch (ClassNotFoundException | SQLException e){
+            System.out.println("Ocurrió un error en la conexión: "+e.getMessage());
+        }//Fin catch
         return conexion;
     }//Fin metodo Connection
 }

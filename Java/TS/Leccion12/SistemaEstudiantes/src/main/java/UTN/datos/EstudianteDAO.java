@@ -1,8 +1,8 @@
-package SistemaEstudiantes.src.main.java.UTN.datos;
+package UTN.datos;
 
-import SistemaEstudiantes.src.main.java.UTN.dominio.Estudiante;
+import UTN.dominio.Estudiante;
 
-import static SistemaEstudiantes.src.main.java.UTN.conexion.Conexion.getConnection;
+import static UTN.conexion.Conexion.getConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,7 +93,6 @@ public class EstudianteDAO {
 
     //Metodo agregar un nuevo estudiante
     public boolean agregarEstudiante(Estudiante estudiante) {
-
         PreparedStatement ps;
         Connection con = getConnection();
         String sql = "INSERT INTO estudiantes2022 (nombre, apellido, telefono, email) VALUES (?, ?, ?, ?)";
@@ -116,7 +115,7 @@ public class EstudianteDAO {
             }//fin catch
         }//Fin finally
         return false;
-    }
+    } //fin metodo agregar estudiantes
 
 
     //Metodo para modificar estudiante
@@ -150,7 +149,7 @@ public class EstudianteDAO {
     public boolean eliminarEstudiante(Estudiante estudiante) {
         PreparedStatement ps;
         Connection con = getConnection();
-        String sql = "DELETE FROM estudiantes 2022 WHERE idestudiantes2022=?";
+        String sql = "DELETE FROM estudiantes.estudiantes2022 WHERE idestudiantes2022 =?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, estudiante.getIdEstudiante());
@@ -195,7 +194,7 @@ public class EstudianteDAO {
 
 
         //Eliminar estudiantes
-        var estudianteEliminar = new Estudiante(5);
+        var estudianteEliminar = new Estudiante(3);
         var eliminado = estudianteDao.eliminarEstudiante(estudianteEliminar);
         if (eliminado)
             System.out.println("Estudiiante eliminado: " + estudianteEliminar);

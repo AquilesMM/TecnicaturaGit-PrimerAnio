@@ -1,4 +1,4 @@
-package SistemaEstudiantes.src.main.java.UTN.dominio;
+package UTN.dominio;
 
 public class Estudiante {
     private int idEstudiante;
